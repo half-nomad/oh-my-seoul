@@ -936,8 +936,8 @@ CREATE INDEX idx_language ON quiz_responses(language);
 
 ### Phase 2: UI 컴포넌트
 - [x] shadcn/ui 설치 (2025-10-21, 초기화 완료)
-- [ ] shadcn/ui 기본 컴포넌트 설치 (button, card, progress, badge)
-- [ ] 공통 컴포넌트 제작
+- [x] shadcn/ui 기본 컴포넌트 설치 (2025-10-21, button, card, progress, badge)
+- [x] 공통 컴포넌트 제작 (2025-10-21, Button, Loading, LanguageToggle)
 
 ### Phase 3: 퀴즈 플로우
 - [x] 데이터 구조 작성 (2025-10-21, data/*.ts)

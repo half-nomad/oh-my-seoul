@@ -1,0 +1,515 @@
+// Oh my Seoul - Quiz Questions
+// MVP: 8 questions (selected from 20)
+
+export type ScoreWeights = {
+  trendy?: number;
+  traditional?: number;
+  local?: number;
+  culture?: number;
+  social?: number;
+  nature?: number;
+  calm?: number;
+  energetic?: number;
+  heritage?: number;
+  authentic?: number;
+  modern?: number;
+  foodie?: number;
+};
+
+export type QuestionOption = {
+  id: string;
+  text: {
+    ko: string;
+    en: string;
+  };
+  scores: ScoreWeights;
+};
+
+export type Question = {
+  id: number;
+  category: 'profile' | 'food' | 'vibe' | 'activity' | 'kculture';
+  question: {
+    ko: string;
+    en: string;
+  };
+  options: QuestionOption[];
+};
+
+export const questions: Question[] = [
+  // Q1: 여행 목적 (기본 프로파일)
+  {
+    id: 1,
+    category: 'profile',
+    question: {
+      ko: '서울 여행의 주요 목적은?',
+      en: "What's the main purpose of your Seoul trip?",
+    },
+    options: [
+      {
+        id: 'q1_a',
+        text: {
+          ko: '트렌디한 카페와 레스토랑 탐방',
+          en: 'To explore trendy cafes and restaurants',
+        },
+        scores: {
+          trendy: 3,
+          foodie: 2,
+          social: 2,
+        },
+      },
+      {
+        id: 'q1_b',
+        text: {
+          ko: 'K-컬처 체험 (드라마, K-팝 등)',
+          en: 'To experience K-culture (K-dramas, K-pop, etc.)',
+        },
+        scores: {
+          culture: 3,
+          social: 2,
+          modern: 2,
+        },
+      },
+      {
+        id: 'q1_c',
+        text: {
+          ko: '패션과 뷰티 쇼핑',
+          en: 'To shop for fashion and beauty products',
+        },
+        scores: {
+          trendy: 3,
+          modern: 2,
+          social: 1,
+        },
+      },
+      {
+        id: 'q1_d',
+        text: {
+          ko: '역사 유적지와 전통 문화 방문',
+          en: 'To visit historical sites and traditional culture',
+        },
+        scores: {
+          traditional: 3,
+          heritage: 3,
+          calm: 1,
+        },
+      },
+    ],
+  },
+
+  // Q2: 음식 경험 (Food)
+  {
+    id: 2,
+    category: 'food',
+    question: {
+      ko: '이상적인 한국 음식 경험은?',
+      en: "What's your ideal Korean food experience?",
+    },
+    options: [
+      {
+        id: 'q2_a',
+        text: {
+          ko: '전통 사찰음식이나 궁중요리',
+          en: 'Traditional Korean temple food or royal cuisine',
+        },
+        scores: {
+          traditional: 3,
+          heritage: 3,
+          calm: 2,
+        },
+      },
+      {
+        id: 'q2_b',
+        text: {
+          ko: '떡볶이, 호떡 같은 길거리 음식',
+          en: 'Popular street food like tteokbokki and hotteok',
+        },
+        scores: {
+          local: 2,
+          foodie: 2,
+          energetic: 2,
+        },
+      },
+      {
+        id: 'q2_c',
+        text: {
+          ko: '트렌디한 퓨전 레스토랑과 모던 카페',
+          en: 'Trendy fusion restaurants and modern cafes',
+        },
+        scores: {
+          trendy: 3,
+          modern: 3,
+          social: 2,
+        },
+      },
+      {
+        id: 'q2_d',
+        text: {
+          ko: '한국인들이 진짜 가는 로컬 맛집',
+          en: 'Authentic local spots where Koreans actually eat',
+        },
+        scores: {
+          local: 3,
+          authentic: 3,
+          foodie: 3,
+        },
+      },
+    ],
+  },
+
+  // Q3: 카페 분위기 (Food/Vibe)
+  {
+    id: 3,
+    category: 'food',
+    question: {
+      ko: '완벽한 카페 분위기를 선택하세요:',
+      en: 'Pick your perfect cafe vibe:',
+    },
+    options: [
+      {
+        id: 'q3_a',
+        text: {
+          ko: '미니멀 디자인과 자연광',
+          en: 'Minimalist design with natural light',
+        },
+        scores: {
+          modern: 2,
+          calm: 2,
+          trendy: 1,
+        },
+      },
+      {
+        id: 'q3_b',
+        text: {
+          ko: '아늑한 빈티지, 책과 레코드',
+          en: 'Cozy vintage with books and records',
+        },
+        scores: {
+          authentic: 2,
+          calm: 2,
+          local: 1,
+        },
+      },
+      {
+        id: 'q3_c',
+        text: {
+          ko: '컬러풀하고 인스타 완벽한 인테리어',
+          en: 'Colorful, Instagram-perfect interiors',
+        },
+        scores: {
+          trendy: 3,
+          social: 3,
+          modern: 2,
+        },
+      },
+      {
+        id: 'q3_d',
+        text: {
+          ko: '숨은 옥상이나 독특한 위치',
+          en: 'Hidden rooftop or unique location',
+        },
+        scores: {
+          local: 2,
+          authentic: 2,
+          trendy: 1,
+        },
+      },
+    ],
+  },
+
+  // Q4: 이상적 활동 (Activity)
+  {
+    id: 4,
+    category: 'activity',
+    question: {
+      ko: '서울에서의 이상적인 활동은:',
+      en: 'Your ideal activity in Seoul would be:',
+    },
+    options: [
+      {
+        id: 'q4_a',
+        text: {
+          ko: '힙한 동네와 거리 예술 탐방',
+          en: 'Exploring hip neighborhoods and street art',
+        },
+        scores: {
+          trendy: 3,
+          modern: 3,
+          local: 2,
+        },
+      },
+      {
+        id: 'q4_b',
+        text: {
+          ko: '궁궐과 전통 한옥마을 방문',
+          en: 'Visiting palaces and traditional hanok villages',
+        },
+        scores: {
+          traditional: 3,
+          heritage: 3,
+          calm: 2,
+        },
+      },
+      {
+        id: 'q4_c',
+        text: {
+          ko: '강남/명동 같은 트렌디한 쇼핑지구',
+          en: 'Shopping in trendy districts like Gangnam/Myeongdong',
+        },
+        scores: {
+          trendy: 3,
+          social: 2,
+          modern: 2,
+        },
+      },
+      {
+        id: 'q4_d',
+        text: {
+          ko: '경치 좋은 산이나 자연 명소 등산',
+          en: 'Hiking scenic mountains or visiting nature spots',
+        },
+        scores: {
+          nature: 3,
+          calm: 2,
+          authentic: 1,
+        },
+      },
+    ],
+  },
+
+  // Q5: 선호 분위기 (Vibe)
+  {
+    id: 5,
+    category: 'vibe',
+    question: {
+      ko: '어떤 분위기가 가장 끌리나요?',
+      en: 'What kind of atmosphere attracts you most?',
+    },
+    options: [
+      {
+        id: 'q5_a',
+        text: {
+          ko: '조용하고 평화로운 공간',
+          en: 'Quiet, peaceful, and calm spaces',
+        },
+        scores: {
+          calm: 3,
+          nature: 2,
+          traditional: 1,
+        },
+      },
+      {
+        id: 'q5_b',
+        text: {
+          ko: '활기차고 붐비는 장소',
+          en: 'Lively, crowded, energetic places',
+        },
+        scores: {
+          energetic: 3,
+          social: 3,
+          culture: 1,
+        },
+      },
+      {
+        id: 'q5_c',
+        text: {
+          ko: '예술적이고 창의적이며 독특한 공간',
+          en: 'Artistic, creative, and unique spaces',
+        },
+        scores: {
+          trendy: 3,
+          modern: 2,
+          authentic: 2,
+        },
+      },
+      {
+        id: 'q5_d',
+        text: {
+          ko: '자연적이고 야외 환경',
+          en: 'Natural and outdoor settings',
+        },
+        scores: {
+          nature: 3,
+          calm: 2,
+          authentic: 1,
+        },
+      },
+    ],
+  },
+
+  // Q6: 꿈의 서울 경험 (Activity)
+  {
+    id: 6,
+    category: 'activity',
+    question: {
+      ko: '꿈의 서울 경험을 선택하세요:',
+      en: 'Pick your dream Seoul experience:',
+    },
+    options: [
+      {
+        id: 'q6_a',
+        text: {
+          ko: '전통 다도 수업 듣기',
+          en: 'Taking a traditional tea ceremony class',
+        },
+        scores: {
+          traditional: 3,
+          heritage: 3,
+          calm: 2,
+        },
+      },
+      {
+        id: 'q6_b',
+        text: {
+          ko: '미슐랭 스타 한식당에서 식사',
+          en: 'Eating at a Michelin-starred Korean restaurant',
+        },
+        scores: {
+          trendy: 3,
+          foodie: 3,
+          modern: 2,
+        },
+      },
+      {
+        id: 'q6_c',
+        text: {
+          ko: 'K팝 댄스 수업이나 콘서트 가기',
+          en: 'Going to a K-pop dance class or concert',
+        },
+        scores: {
+          culture: 3,
+          social: 3,
+          energetic: 2,
+        },
+      },
+      {
+        id: 'q6_d',
+        text: {
+          ko: '로컬 가이드와 비밀 골목 탐험',
+          en: 'Exploring secret alleys with a local guide',
+        },
+        scores: {
+          authentic: 3,
+          local: 3,
+          foodie: 2,
+        },
+      },
+    ],
+  },
+
+  // Q7: K-컬처 지식 (K-Culture)
+  {
+    id: 7,
+    category: 'kculture',
+    question: {
+      ko: 'K-컬처에 대해 얼마나 아시나요?',
+      en: 'How much do you know about K-culture?',
+    },
+    options: [
+      {
+        id: 'q7_a',
+        text: {
+          ko: "슈퍼 팬! I'm obsessed",
+          en: "I'm a super fan!",
+        },
+        scores: {
+          culture: 3,
+          social: 2,
+          energetic: 2,
+        },
+      },
+      {
+        id: 'q7_b',
+        text: {
+          ko: 'K-드라마/K-팝을 가볍게 즐김',
+          en: 'I enjoy K-dramas/K-pop casually',
+        },
+        scores: {
+          culture: 2,
+          modern: 1,
+        },
+      },
+      {
+        id: 'q7_c',
+        text: {
+          ko: '더 알고 싶어 함',
+          en: "I'm curious to learn more",
+        },
+        scores: {
+          culture: 1,
+          traditional: 1,
+        },
+      },
+      {
+        id: 'q7_d',
+        text: {
+          ko: '별로 익숙하지 않지만 열려 있음',
+          en: "Not really familiar, but open to it",
+        },
+        scores: {
+          traditional: 2,
+          calm: 1,
+        },
+      },
+    ],
+  },
+
+  // Q8: K-드라마 촬영지 (K-Culture)
+  {
+    id: 8,
+    category: 'kculture',
+    question: {
+      ko: '어떤 K-드라마 촬영지를 방문하고 싶나요?',
+      en: 'Which K-drama filming location would you visit?',
+    },
+    options: [
+      {
+        id: 'q8_a',
+        text: {
+          ko: '남산타워 (로맨틱 장면)',
+          en: 'Namsan Tower (romantic scenes)',
+        },
+        scores: {
+          culture: 2,
+          social: 2,
+          modern: 1,
+        },
+      },
+      {
+        id: 'q8_b',
+        text: {
+          ko: '경복궁 (사극)',
+          en: 'Gyeongbokgung Palace (historical dramas)',
+        },
+        scores: {
+          traditional: 3,
+          heritage: 3,
+          culture: 2,
+        },
+      },
+      {
+        id: 'q8_c',
+        text: {
+          ko: '홍대/이태원 거리 (청춘 드라마)',
+          en: 'Hongdae/Itaewon streets (youth dramas)',
+        },
+        scores: {
+          trendy: 3,
+          modern: 3,
+          social: 2,
+        },
+      },
+      {
+        id: 'q8_d',
+        text: {
+          ko: '내 자신만의 장소 발견하고 싶음',
+          en: "I'd rather discover my own spots",
+        },
+        scores: {
+          authentic: 3,
+          local: 2,
+          calm: 1,
+        },
+      },
+    ],
+  },
+];

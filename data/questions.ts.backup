@@ -119,7 +119,6 @@ export const questions: Question[] = [
         scores: {
           foodie: 2,
           'social-butterfly': 2,
-          'balanced-explorer': 1,
         },
       },
       {
@@ -162,8 +161,9 @@ export const questions: Question[] = [
           en: 'Minimalist design with natural light',
         },
         scores: {
-          trendsetter: 2,
-          'nature-seeker': 2,
+          modern: 2,
+          calm: 2,
+          trendy: 1,
         },
       },
       {
@@ -173,9 +173,9 @@ export const questions: Question[] = [
           en: 'Cozy vintage with books and records',
         },
         scores: {
-          foodie: 2,
-          'nature-seeker': 2,
-          'heritage-explorer': 1,
+          authentic: 2,
+          calm: 2,
+          local: 1,
         },
       },
       {
@@ -185,8 +185,9 @@ export const questions: Question[] = [
           en: 'Colorful, Instagram-perfect interiors',
         },
         scores: {
-          trendsetter: 3,
-          'social-butterfly': 3,
+          trendy: 3,
+          social: 3,
+          modern: 2,
         },
       },
       {
@@ -196,8 +197,9 @@ export const questions: Question[] = [
           en: 'Hidden rooftop or unique location',
         },
         scores: {
-          foodie: 2,
-          trendsetter: 1,
+          local: 2,
+          authentic: 2,
+          trendy: 1,
         },
       },
     ],
@@ -219,8 +221,9 @@ export const questions: Question[] = [
           en: 'Exploring hip neighborhoods and street art',
         },
         scores: {
-          trendsetter: 3,
-          'social-butterfly': 2,
+          trendy: 3,
+          modern: 3,
+          local: 2,
         },
       },
       {
@@ -230,8 +233,9 @@ export const questions: Question[] = [
           en: 'Visiting palaces and traditional hanok villages',
         },
         scores: {
-          'heritage-explorer': 3,
-          'nature-seeker': 2,
+          traditional: 3,
+          heritage: 3,
+          calm: 2,
         },
       },
       {
@@ -241,8 +245,9 @@ export const questions: Question[] = [
           en: 'Shopping in trendy districts like Gangnam/Myeongdong',
         },
         scores: {
-          trendsetter: 3,
-          'social-butterfly': 2,
+          trendy: 3,
+          social: 2,
+          modern: 2,
         },
       },
       {
@@ -252,8 +257,9 @@ export const questions: Question[] = [
           en: 'Hiking scenic mountains or visiting nature spots',
         },
         scores: {
-          'nature-seeker': 3,
-          'balanced-explorer': 1,
+          nature: 3,
+          calm: 2,
+          authentic: 1,
         },
       },
     ],
@@ -275,8 +281,9 @@ export const questions: Question[] = [
           en: 'Quiet, peaceful, and calm spaces',
         },
         scores: {
-          'nature-seeker': 3,
-          'heritage-explorer': 1,
+          calm: 3,
+          nature: 2,
+          traditional: 1,
         },
       },
       {
@@ -286,8 +293,9 @@ export const questions: Question[] = [
           en: 'Lively, crowded, energetic places',
         },
         scores: {
-          'social-butterfly': 3,
-          'kculture-fan': 1,
+          energetic: 3,
+          social: 3,
+          culture: 1,
         },
       },
       {
@@ -297,8 +305,9 @@ export const questions: Question[] = [
           en: 'Artistic, creative, and unique spaces',
         },
         scores: {
-          trendsetter: 3,
-          foodie: 2,
+          trendy: 3,
+          modern: 2,
+          authentic: 2,
         },
       },
       {
@@ -308,8 +317,9 @@ export const questions: Question[] = [
           en: 'Natural and outdoor settings',
         },
         scores: {
-          'nature-seeker': 3,
-          'balanced-explorer': 1,
+          nature: 3,
+          calm: 2,
+          authentic: 1,
         },
       },
     ],
@@ -331,8 +341,9 @@ export const questions: Question[] = [
           en: 'Taking a traditional tea ceremony class',
         },
         scores: {
-          'heritage-explorer': 3,
-          'nature-seeker': 2,
+          traditional: 3,
+          heritage: 3,
+          calm: 2,
         },
       },
       {
@@ -342,8 +353,9 @@ export const questions: Question[] = [
           en: 'Eating at a Michelin-starred Korean restaurant',
         },
         scores: {
-          trendsetter: 3,
+          trendy: 3,
           foodie: 3,
+          modern: 2,
         },
       },
       {
@@ -353,8 +365,9 @@ export const questions: Question[] = [
           en: 'Going to a K-pop dance class or concert',
         },
         scores: {
-          'kculture-fan': 3,
-          'social-butterfly': 3,
+          culture: 3,
+          social: 3,
+          energetic: 2,
         },
       },
       {
@@ -364,8 +377,9 @@ export const questions: Question[] = [
           en: 'Exploring secret alleys with a local guide',
         },
         scores: {
-          foodie: 3,
-          'balanced-explorer': 2,
+          authentic: 3,
+          local: 3,
+          foodie: 2,
         },
       },
     ],
@@ -387,8 +401,9 @@ export const questions: Question[] = [
           en: "I'm a super fan!",
         },
         scores: {
-          'kculture-fan': 3,
-          'social-butterfly': 2,
+          culture: 3,
+          social: 2,
+          energetic: 2,
         },
       },
       {
@@ -398,8 +413,8 @@ export const questions: Question[] = [
           en: 'I enjoy K-dramas/K-pop casually',
         },
         scores: {
-          'kculture-fan': 2,
-          'balanced-explorer': 1,
+          culture: 2,
+          modern: 1,
         },
       },
       {
@@ -409,9 +424,8 @@ export const questions: Question[] = [
           en: "I'm curious to learn more",
         },
         scores: {
-          'kculture-fan': 1,
-          'heritage-explorer': 1,
-          'balanced-explorer': 1,
+          culture: 1,
+          traditional: 1,
         },
       },
       {
@@ -421,8 +435,8 @@ export const questions: Question[] = [
           en: "Not really familiar, but open to it",
         },
         scores: {
-          'heritage-explorer': 2,
-          'nature-seeker': 1,
+          traditional: 2,
+          calm: 1,
         },
       },
     ],
@@ -444,9 +458,9 @@ export const questions: Question[] = [
           en: 'Namsan Tower (romantic scenes)',
         },
         scores: {
-          'kculture-fan': 2,
-          'social-butterfly': 2,
-          'balanced-explorer': 1,
+          culture: 2,
+          social: 2,
+          modern: 1,
         },
       },
       {
@@ -456,8 +470,9 @@ export const questions: Question[] = [
           en: 'Gyeongbokgung Palace (historical dramas)',
         },
         scores: {
-          'heritage-explorer': 3,
-          'kculture-fan': 2,
+          traditional: 3,
+          heritage: 3,
+          culture: 2,
         },
       },
       {
@@ -467,8 +482,9 @@ export const questions: Question[] = [
           en: 'Hongdae/Itaewon streets (youth dramas)',
         },
         scores: {
-          trendsetter: 3,
-          'social-butterfly': 2,
+          trendy: 3,
+          modern: 3,
+          social: 2,
         },
       },
       {
@@ -478,9 +494,9 @@ export const questions: Question[] = [
           en: "I'd rather discover my own spots",
         },
         scores: {
-          foodie: 3,
-          'nature-seeker': 2,
-          'balanced-explorer': 1,
+          authentic: 3,
+          local: 2,
+          calm: 1,
         },
       },
     ],

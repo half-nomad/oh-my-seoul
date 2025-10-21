@@ -27,14 +27,14 @@ export function OptionButton({ option, isSelected, onClick }: OptionButtonProps)
         'w-full p-4 rounded-lg border-2 text-left transition-all duration-200',
         'flex items-center justify-between gap-3',
         isSelected
-          ? 'border-mint-primary bg-mint-primary/10 shadow-md'
-          : 'border-gray-200 hover:border-mint-primary/50 hover:bg-mint-primary/5'
+          ? 'border-[#37BEB0] bg-[#37BEB0]/10 shadow-md'
+          : 'border-gray-200 hover:border-[#37BEB0]/50 hover:bg-[#37BEB0]/5'
       )}
     >
       <span
         className={cn(
           'text-base md:text-lg',
-          isSelected ? 'text-mint-primary font-medium' : 'text-foreground'
+          isSelected ? 'text-[#37BEB0] font-medium' : 'text-gray-900'
         )}
       >
         {option.text.ko}
@@ -46,7 +46,7 @@ export function OptionButton({ option, isSelected, onClick }: OptionButtonProps)
           animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 500, damping: 30 }}
         >
-          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-mint-primary">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#37BEB0]">
             <Check className="w-4 h-4 text-white" />
           </div>
         </motion.div>

@@ -943,12 +943,16 @@ CREATE INDEX idx_language ON quiz_responses(language);
 - [x] 데이터 구조 작성 (2025-10-21, data/*.ts)
 - [x] 상태 관리 (2025-10-21, lib/quiz-context.tsx)
 - [x] 스코어링 알고리즘 (2025-10-21, lib/scoring.ts)
-- [x] 랜딩 페이지 (2025-10-21, app/[locale]/page.tsx)
+- [x] 랜딩 페이지 (2025-10-21, app/page.tsx - 루트 이동)
 - [x] 퀴즈 컴포넌트 (2025-10-21, ProgressBar, QuestionCard, OptionButton)
-- [x] 퀴즈 페이지 (2025-10-21, app/[locale]/quiz/page.tsx)
+- [x] 퀴즈 페이지 (2025-10-21, app/quiz/page.tsx - 루트 이동)
 - [x] 로딩 화면 (2025-10-21, shared/Loading.tsx 통합)
 - [x] 결과 컴포넌트 (2025-10-21, TravelerTypeBadge, CourseCard)
-- [x] 결과 페이지 (2025-10-21, app/[locale]/result/[type]/page.tsx)
+- [x] 결과 페이지 (2025-10-21, app/result/[type]/page.tsx - 루트 이동)
+- [x] 로컬 테스트 완료 (2025-10-21)
+- [x] 스코어 키 매핑 버그 수정 (2025-10-21)
+- [x] Next.js 15 async params 이슈 해결 (2025-10-21)
+- [x] Tailwind v4 커스텀 컬러 수정 (2025-10-21)
 
 ### Phase 4: 바이럴 기능
 - [ ] 게이미피케이션

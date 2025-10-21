@@ -13,7 +13,7 @@ export function Button({ className, children, ...props }: CustomButtonProps) {
   return (
     <ShadcnButton
       className={cn(
-        'bg-mint-primary hover:bg-mint-primary/90',
+        'bg-[#37BEB0] hover:bg-[#2C9B8F]',
         'text-white font-medium',
         'transition-all duration-200',
         'shadow-sm hover:shadow-md',

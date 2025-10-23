@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: 'Oh my Seoul',
     images: [
       {
-        url: 'https://ohmyseoul.page/og-image.jpg',
+        url: 'https://ohmyseoul.page/images/og/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Oh my Seoul - 서울 여행 퀴즈',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Oh my Seoul - 나만의 서울 여행 스타일 찾기',
     description: '8개의 질문으로 알아보는 나의 여행자 타입. 당신에게 딱 맞는 서울 여행 코스를 추천해드립니다.',
-    images: ['https://ohmyseoul.page/og-image.jpg'],
+    images: ['https://ohmyseoul.page/images/og/og-image.png'],
   },
 };
 

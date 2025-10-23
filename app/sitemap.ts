@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { travelerTypes } from '@/data/types';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://oh-my-seoul-qr97pjg5m-mokkas-projects-8367cd87.vercel.app';
+  const baseUrl = 'https://ohmyseoul.page';
 
   // Base pages
   const routes = [

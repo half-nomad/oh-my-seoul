@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: ResultPageProps): Promise<Met
     };
   }
 
-  const baseUrl = 'https://oh-my-seoul-qr97pjg5m-mokkas-projects-8367cd87.vercel.app';
+  const baseUrl = 'https://ohmyseoul.page';
   const imageUrl = `${baseUrl}/images/types/${type}.png`;
   const pageUrl = `${baseUrl}/result/${type}`;
 

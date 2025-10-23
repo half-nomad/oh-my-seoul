@@ -11,7 +11,8 @@ OhmySeoul/
 ├── CLAUDE.md                    # 이 파일 - 문서 가이드
 ├── PROJECT-PLAN.md              # 개발 실행 계획 (Phase 0~7)
 ├── WORK-LOG.md                  # 작업 이력 기록
-└── oh-my-seoul-design-system.md # 디자인 토큰
+├── oh-my-seoul-design-system.md # 디자인 토큰
+└── oh-my-seoul-seo-guide.md     # SEO & 배포 가이드
 ```
 
 ---
@@ -36,6 +37,11 @@ OhmySeoul/
 ### **oh-my-seoul-design-system.md**
 - 색상, 폰트, 간격 등 디자인 토큰
 - 컴포넌트 스타일 가이드
+
+### **oh-my-seoul-seo-guide.md**
+- SEO 최적화 가이드
+- 도메인 구매 및 연결
+- 구글/네이버 검색엔진 등록
 
 ---
 
@@ -68,7 +74,7 @@ OhmySeoul/
 3. **CLAUDE.md** 현재 상태 업데이트
 
 ### 문서 생성 금지
-- ❌ 추가 문서 만들지 말 것 (위 4개 문서만 유지)
+- ❌ 추가 문서 만들지 말 것 (위 5개 문서만 유지)
 - ❌ README, 기타 중복 문서 불필요
 
 ---

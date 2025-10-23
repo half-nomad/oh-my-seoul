@@ -26,7 +26,7 @@ export function Footer() {
 
         {/* Version and Copyright */}
         <p className="text-sm text-gray-500 text-center">
-          Oh my Seoul v1.0.0 · © 2025
+          Oh my Seoul v1.1.0 · © 2025
         </p>
       </div>
     </footer>

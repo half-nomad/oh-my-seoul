@@ -65,7 +65,14 @@ OhmySeoul/
 
 ## 📝 작업 로그
 
-### 2025-10-23
+### 2025-10-23 (오후)
+- ✅ Button 컴포넌트 import 이슈 수정 (shared/Button → ui/button)
+- ✅ ButtonProps 타입 문제 해결 (React.ComponentProps 사용)
+- ✅ Vercel 프로덕션 배포 완료
+- ✅ 배포 URL: https://oh-my-seoul-qr97pjg5m-mokkas-projects-8367cd87.vercel.app
+- ✅ GitHub 저장소 자동 배포 연동 완료
+
+### 2025-10-23 (오전)
 - ✅ AI 일러스트 7개 추가 (PNG, 800KB, public/images/types/)
 - ✅ TravelerTypeBadge 컴포넌트 이미지 표시 수정 (이모지 → 실제 이미지)
 - ✅ GitHub 저장소 생성 및 연결 (https://github.com/half-nomad/oh-my-seoul)
@@ -78,4 +85,4 @@ OhmySeoul/
 - ✅ 불필요한 문서 삭제
 - ✅ Phase 0~3 개발 완료 (퀴즈 플로우)
 
-**현재 단계**: Phase 3 완료 → Phase 4 준비 (바이럴 기능)
+**현재 단계**: Phase 3 완료, Phase 7 배포 완료 → Phase 4 준비 (바이럴 기능)

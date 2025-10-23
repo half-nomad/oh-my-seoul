@@ -14,13 +14,14 @@
 1. [프로젝트 소개](#1-프로젝트-소개)
 2. [AI 바이브 코딩이란?](#2-ai-바이브-코딩이란)
 3. [개발 환경 준비](#3-개발-환경-준비)
-4. [세션 1: 기획 문서를 코드로 (Chat 1)](#4-세션-1-기획-문서를-코드로-chat-1)
-5. [세션 2: 프로젝트 구축 (Chat 2)](#5-세션-2-프로젝트-구축-chat-2)
-6. [세션 3: 테스트와 버그 수정 (Chat 3)](#6-세션-3-테스트와-버그-수정-chat-3)
-7. [왜 Next.js와 Tailwind인가?](#7-왜-nextjs와-tailwind인가)
-8. [개발 도구 활용: Chrome DevTools MCP](#8-개발-도구-활용-chrome-devtools-mcp)
-9. [배운 점과 교훈](#9-배운-점과-교훈)
-10. [다음 단계](#10-다음-단계)
+4. [왜 Next.js와 Tailwind인가?](#4-왜-nextjs와-tailwind인가)
+5. [세션 1: 기획 문서를 코드로 (Chat 1)](#5-세션-1-기획-문서를-코드로-chat-1)
+6. [세션 2: 프로젝트 구축 (Chat 2)](#6-세션-2-프로젝트-구축-chat-2)
+7. [세션 3: 테스트와 버그 수정 (Chat 3)](#7-세션-3-테스트와-버그-수정-chat-3)
+8. [세션 4: SEO 최적화 및 버전 관리 (Chat 4)](#8-세션-4-seo-최적화-및-버전-관리-chat-4)
+9. [개발 도구 활용: Chrome DevTools MCP](#9-개발-도구-활용-chrome-devtools-mcp)
+10. [배운 점과 교훈](#10-배운-점과-교훈)
+11. [다음 단계](#11-다음-단계)
 
 ---
 
@@ -164,11 +165,195 @@ mkdir OhMySeoul  # npm naming restrictions 위반
 
 ---
 
-## 4. 세션 1: 기획 문서를 코드로 (Chat 1)
+## 4. 왜 Next.js와 Tailwind인가?
+
+### 4.1 Next.js 선택 이유
+
+**1. Server-Side Rendering (SSR) 기본 제공**
+```typescript
+// 검색 엔진 최적화 (SEO) 자동
+export async function generateMetadata({ params }) {
+  const { type } = await params;
+  return {
+    title: `Seoul ${type} - Oh my Seoul`,
+    description: '...',
+    openGraph: {
+      images: [`/og/${type}.png`]
+    }
+  }
+}
+```
+
+**바이럴 마케팅에 필수:**
+- Instagram, Facebook 링크 공유 시 미리보기 이미지 표시
+- 동적 OG 이미지 (타입별로 다른 이미지)
+
+**2. App Router (Next.js 13+)**
+```
+app/
+├── page.tsx                    # 랜딩
+├── quiz/page.tsx               # 퀴즈
+└── result/[type]/page.tsx      # 결과 (동적 라우팅)
+```
+
+**장점:**
+- 파일 시스템 기반 라우팅 (폴더 = URL)
+- Server/Client Component 명확한 분리
+- 메타데이터 관리 용이
+
+**3. Image Optimization**
+```typescript
+import Image from 'next/image';
+
+<Image
+  src="/images/types/trendsetter.webp"
+  width={800}
+  height={800}
+  alt="Seoul Trendsetter"
+  priority  // 첫 로드 우선
+/>
+```
+
+**효과:**
+- 자동 WebP 변환
+- Lazy loading
+- 반응형 srcset 생성
+
+**4. API Routes**
+```typescript
+// app/api/save-result/route.ts
+export async function POST(request: Request) {
+  const { answers, type } = await request.json();
+  // Supabase 저장
+  return Response.json({ success: true });
+}
+```
+
+**Phase 6에서 활용:**
+- 클라이언트에서 `/api/save-result` 호출
+- 서버에서 데이터 저장 (보안 강화)
+
+**5. Vercel 최적화**
+- Next.js 개발사 Vercel의 무료 호스팅
+- 자동 배포 (git push → 배포 완료)
+- Edge Network (전 세계 빠른 로딩)
+
+### 4.2 Tailwind CSS 선택 이유
+
+**1. Utility-First 방식**
+```typescript
+// ✅ Tailwind
+<button className="bg-[#37BEB0] text-white px-4 py-2 rounded-lg hover:bg-[#2C9B8F]">
+  시작하기
+</button>
+
+// ❌ CSS 파일 별도 작성
+<button className="start-button">시작하기</button>
+// styles.css: .start-button { background: #37BEB0; ... }
+```
+
+**장점:**
+- CSS 파일 왔다갔다 안 해도 됨
+- 클래스명 고민 불필요 (`.start-button` vs `.btn-start` vs `.cta-button`)
+- 중복 스타일 자동 제거 (빌드 시)
+
+**2. 반응형 디자인 간편**
+```typescript
+<div className="
+  w-full           /* 모바일: 100% */
+  md:w-1/2         /* 태블릿: 50% */
+  lg:w-1/3         /* 데스크탑: 33% */
+">
+```
+
+**바이럴 앱에 필수:**
+- 모바일 퍼스트 (Instagram 공유는 주로 모바일)
+- 다양한 화면 크기 대응
+
+**3. shadcn/ui와 완벽한 호환**
+```bash
+npx shadcn@latest add button
+```
+
+**생성된 코드:**
+```typescript
+// components/ui/button.tsx
+<Slot
+  className={cn(
+    "inline-flex items-center justify-center rounded-md text-sm",
+    "bg-primary text-primary-foreground hover:bg-primary/90",
+    className
+  )}
+/>
+```
+
+**장점:**
+- Tailwind 기반 컴포넌트 라이브러리
+- 코드를 직접 프로젝트에 복사 (의존성 최소화)
+- 커스터마이징 자유도 100%
+
+**4. 디자인 시스템 적용 용이**
+```css
+/* globals.css */
+:root {
+  --mint-primary: #37BEB0;
+}
+
+/* 자동으로 bg-[var(--mint-primary)] 사용 가능 */
+```
+
+**5. 빌드 최적화**
+- 사용하지 않는 CSS 자동 제거
+- 프로덕션 번들 크기 최소화
+
+**Tailwind v4 추가 장점:**
+- JavaScript 설정 파일 불필요 (`tailwind.config.js` 삭제)
+- CSS 네이티브 변수 활용
+- 빌드 속도 10배 향상
+
+### 4.3 Next.js + Tailwind 조합의 시너지
+
+**개발 속도 3배 향상:**
+```typescript
+// 10분 만에 완성되는 랜딩 페이지
+export default function LandingPage() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#E8F7F5] to-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center"
+      >
+        <h1 className="text-6xl font-bold text-[#37BEB0]">Oh my Seoul</h1>
+        <p className="mt-4 text-xl text-gray-600">당신의 서울 여행 스타일은?</p>
+        <Button className="mt-8 bg-[#37BEB0] hover:bg-[#2C9B8F]">
+          테스트 시작하기
+        </Button>
+      </motion.div>
+    </main>
+  );
+}
+```
+
+**배포 1분 완성:**
+```bash
+git push origin main
+# Vercel이 자동으로 빌드 + 배포
+# https://oh-my-seoul.vercel.app 완성
+```
+
+**초보자에게 적합:**
+- 학습 곡선 완만 (HTML/CSS 알면 시작 가능)
+- AI가 Tailwind 클래스명 잘 알고 있음
+- 커뮤니티 활발 (Stack Overflow, Discord)
+
+---
+
+## 5. 세션 1: 기획 문서를 코드로 (Chat 1)
 
 **목표:** 외부 기획 문서를 이해하고 MVP 범위 정의, 실행 가능한 계획 수립
 
-### 4.1 문서 검토 단계
+### 5.1 문서 검토 단계
 
 **사용자 요청:**
 ```
@@ -184,7 +369,7 @@ mkdir OhMySeoul  # npm naming restrictions 위반
 
 **결과:** AI가 프로젝트 전체 맥락을 파악함
 
-### 4.2 비즈니스 맥락 이해
+### 5.2 비즈니스 맥락 이해
 
 **사용자 설명:**
 ```
@@ -201,7 +386,7 @@ mkdir OhMySeoul  # npm naming restrictions 위반
 - 데이터 수집은 2순위 (개인정보 최소화)
 - 빠른 출시가 중요 (MVP 범위 축소 필요)
 
-### 4.3 MVP 범위 재정의
+### 5.3 MVP 범위 재정의
 
 **사용자의 명확한 요구사항:**
 ```
@@ -218,7 +403,7 @@ mkdir OhMySeoul  # npm naming restrictions 위반
 - 타임라인 제거 (1인 개발은 일정 예측 불가)
 - 의존성 기반 Phase 구조 도입 (Phase 0~7)
 
-### 4.4 질문 선정 프로세스 (20개 → 8개)
+### 5.4 질문 선정 프로세스 (20개 → 8개)
 
 **Step 1: 카테고리 분류**
 ```
@@ -255,7 +440,7 @@ types_coverage = {
 # 모든 타입이 2개 이상 질문으로 측정됨 ✅
 ```
 
-### 4.5 PROJECT-PLAN.md 전면 재작성
+### 5.5 PROJECT-PLAN.md 전면 재작성
 
 **핵심 변경사항:**
 
@@ -288,7 +473,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 7
                                                     ↘ Phase 6 (선택)
 ```
 
-### 4.6 문서 구조화 (3개만 유지)
+### 5.6 문서 구조화 (3개만 유지)
 
 **AI의 실수 1: 과도한 문서 생성**
 ```
@@ -318,7 +503,7 @@ oh-my-seoul/
 - 문서 간 중복 최소화
 - 각 문서의 명확한 역할 정의
 
-### 4.7 Git 커밋
+### 5.7 Git 커밋
 
 ```bash
 git add CLAUDE.md PROJECT-PLAN.md LOG.md
@@ -332,7 +517,7 @@ git commit -m "docs: MVP 범위 재정의 및 Phase 기반 계획 수립
 #phase0 #mvp-planning"
 ```
 
-### 4.8 세션 1 교훈
+### 5.8 세션 1 교훈
 
 **1. 명확한 의사소통**
 ```
@@ -353,11 +538,11 @@ git commit -m "docs: MVP 범위 재정의 및 Phase 기반 계획 수립
 
 ---
 
-## 5. 세션 2: 프로젝트 구축 (Chat 2)
+## 6. 세션 2: 프로젝트 구축 (Chat 2)
 
 **목표:** Next.js 15 프로젝트 생성, TypeScript 데이터 구조 작성, 디자인 시스템 적용
 
-### 5.1 현재 상태 파악
+### 6.1 현재 상태 파악
 
 **사용자 요청:**
 ```
@@ -384,7 +569,7 @@ git commit -m "docs: MVP 범위 재정의 및 Phase 기반 계획 수립
 - 외부 의존성(AI 일러스트)을 기다리지 않음
 - 더미 데이터로 진행, 나중에 교체
 
-### 5.2 데이터 구조 작성 (TypeScript)
+### 6.2 데이터 구조 작성 (TypeScript)
 
 **data/questions.ts**
 ```typescript
@@ -498,7 +683,7 @@ git commit -m "feat: MVP 데이터 구조 완성 (Phase 0.1 + Phase 3.1)
 #phase0 #phase3 #data-structure"
 ```
 
-### 5.3 폴더명 이슈 해결
+### 6.3 폴더명 이슈 해결
 
 **문제 발생:**
 ```bash
@@ -533,7 +718,7 @@ git init
 - Windows/macOS는 대소문자를 구분하지 않음
 - npm 패키지 네이밍 규칙: 소문자만 허용
 
-### 5.4 Next.js 15 프로젝트 생성
+### 6.4 Next.js 15 프로젝트 생성
 
 **충돌 문제:**
 ```
@@ -577,7 +762,7 @@ cp -r /tmp/backup/* .
 npm install framer-motion lucide-react next-intl
 ```
 
-### 5.5 shadcn/ui 초기화
+### 6.5 shadcn/ui 초기화
 
 ```bash
 npx shadcn@latest init -d
@@ -593,7 +778,7 @@ npx shadcn@latest init -d
 - `lib/utils.ts` 생성 (cn 함수)
 - `app/globals.css` CSS 변수 추가
 
-### 5.6 디자인 시스템 적용 (Tailwind v4)
+### 6.6 디자인 시스템 적용 (Tailwind v4)
 
 **기존 (Next.js 기본):**
 ```css
@@ -640,7 +825,7 @@ mkdir -p components/quiz components/result components/shared components/ui \
          lib public/images/types public/images/og messages
 ```
 
-### 5.7 문서 관리 피드백
+### 6.7 문서 관리 피드백
 
 **사용자:**
 ```
@@ -667,7 +852,7 @@ mkdir -p components/quiz components/result components/shared components/ui \
 **교훈:** AI는 작업 진행에만 집중하면 문서 업데이트를 잊기 쉬움
 - 주기적으로 "문서 업데이트했어?" 확인 필요
 
-### 5.8 세션 2 교훈
+### 6.8 세션 2 교훈
 
 **1. npm 네이밍 규칙**
 ```
@@ -695,11 +880,11 @@ export const questions: any[] = [...]
 
 ---
 
-## 6. 세션 3: 테스트와 버그 수정 (Chat 3)
+## 7. 세션 3: 테스트와 버그 수정 (Chat 3)
 
 **목표:** Phase 3 완료 후 로컬 테스트 실행 및 발견된 버그 수정
 
-### 6.1 Phase 3 완료 상태
+### 7.1 Phase 3 완료 상태
 
 **작성된 파일 (Chat 3 이전):**
 - ✅ `lib/quiz-context.tsx` - 퀴즈 상태 관리
@@ -711,7 +896,7 @@ export const questions: any[] = [...]
 - ✅ `components/result/*` - TravelerTypeBadge, CourseCard
 - ✅ `components/shared/*` - Button, Loading
 
-### 6.2 로컬 개발 서버 시작
+### 7.2 로컬 개발 서버 시작
 
 ```bash
 npm run dev
@@ -721,7 +906,7 @@ npm run dev
 
 **결과:** 화면이 표시되지 않음 😱
 
-### 6.3 버그 1: 라우팅 구조 문제
+### 7.3 버그 1: 라우팅 구조 문제
 
 **문제:**
 - `app/[locale]/` 구조로 되어 있으나 `middleware.ts` 없음
@@ -761,7 +946,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 - MVP는 한국어만 → 다국어 구조 불필요
 - Phase별 작업 범위를 코드 구조에도 일관되게 적용
 
-### 6.4 버그 2: 스코어 키/타입 ID 불일치 (치명적)
+### 7.4 버그 2: 스코어 키/타입 ID 불일치 (치명적)
 
 **문제:**
 ```typescript
@@ -815,7 +1000,7 @@ scores: {
 - TypeScript 타입 시스템만으로는 런타임 데이터 불일치 방지 불가
 - **실제 테스트 없이는 발견 어려움**
 
-### 6.5 버그 3: Tailwind v4 커스텀 컬러 미작동
+### 7.5 버그 3: Tailwind v4 커스텀 컬러 미작동
 
 **문제:**
 ```typescript
@@ -846,7 +1031,7 @@ className="bg-[#37BEB0] text-white"
 - Arbitrary values (`bg-[#37BEB0]`)는 정상 작동
 - 프로덕션에서는 문제 없지만, 타입 세이프하지 않음
 
-### 6.6 버그 4: Next.js 15 async params 에러
+### 7.6 버그 4: Next.js 15 async params 에러
 
 **문제:**
 ```
@@ -900,7 +1085,7 @@ export default function ResultClient({ travelerType }: { travelerType: TravelerT
 - Server/Client Component 역할 명확히 분리
 - `useRouter`, `useState` 등은 Client Component에서만 사용
 
-### 6.7 디버깅 로그 추가
+### 7.7 디버깅 로그 추가
 
 ```typescript
 // app/quiz/page.tsx
@@ -928,7 +1113,7 @@ const handleNext = () => {
 - 에러 핸들링으로 사용자 경험 개선
 - try-catch로 예상치 못한 에러 대비
 
-### 6.8 테스트 결과
+### 7.8 테스트 결과
 
 **성공한 플로우:**
 
@@ -957,7 +1142,7 @@ const handleNext = () => {
 
 **확인된 타입:** Nature Seeker (실제 답변 기반)
 
-### 6.9 발견된 버그 요약
+### 7.9 발견된 버그 요약
 
 | 번호 | 버그 | 심각도 | 발견 방법 | 수정 |
 |------|------|--------|----------|------|
@@ -971,7 +1156,7 @@ const handleNext = () => {
 - 로컬 개발 서버 실행이 가장 중요한 검증 단계
 - AI가 작성한 코드도 반드시 테스트 필요
 
-### 6.10 Git 커밋
+### 7.10 Git 커밋
 
 ```bash
 git add .
@@ -986,7 +1171,7 @@ git commit -m "fix: Phase 3 로컬 테스트 및 주요 버그 수정
 #phase3 #bugfix #testing"
 ```
 
-### 6.11 세션 3 교훈
+### 7.11 세션 3 교훈
 
 **1. 프로토타입 → 테스트 → 수정 사이클**
 ```
@@ -1008,193 +1193,207 @@ git commit -m "fix: Phase 3 로컬 테스트 및 주요 버그 수정
 
 ---
 
-## 7. 왜 Next.js와 Tailwind인가?
+## 8. 세션 4: SEO 최적화 및 버전 관리 (Chat 4)
 
-### 7.1 Next.js 선택 이유
+### 8.1 세션 개요
 
-**1. Server-Side Rendering (SSR) 기본 제공**
+**목표:** MVP 출시 완료 후 검색엔진 최적화 및 버전 관리 시작
+
+**완료 작업:**
+- SEO 메타데이터 설정 (Open Graph, Twitter 카드)
+- 커스텀 도메인 연결 (ohmyseoul.page)
+- Google/네이버 검색엔진 등록
+- 파비콘 및 OG 이미지 추가
+- 버전 관리 시작 (v1.0.0)
+- Footer 컴포넌트 (버전 표시)
+
+### 8.2 주요 대화 흐름
+
+#### A. SEO 최적화 작업
+
+**사용자:** "지금부터 우리는 SEO 최적화 작업을 할거야"
+
+**AI의 작업:**
+1. ✅ `app/layout.tsx`: Open Graph, Twitter 카드 메타데이터 추가
+2. ✅ `app/result/[type]/page.tsx`: 타입별 동적 메타데이터 생성
+3. ✅ `app/sitemap.ts`: 9개 페이지 자동 사이트맵 생성
+4. ✅ `app/robots.ts`: 검색엔진 크롤링 설정
+
+**학습 포인트:**
+- Next.js 13+ Metadata API 활용
+- 동적 메타데이터 생성 (`generateMetadata`)
+- 사이트맵 자동화
+
+#### B. 커스텀 도메인 연결
+
+**사용자:** "도메인 방식으로 구글진행했어 문제가 되는 상황알려줘"
+
+**AI의 답변:**
+- 도메인 방식 vs URL 접두어 방식 비교
+- 도메인 방식이 더 좋음 (서브도메인 자동 포함)
+- Cloudflare DNS 설정 방법 안내
+
+**실제 작업:**
+1. ✅ Cloudflare에서 `ohmyseoul.page` 도메인 구매
+2. ✅ Vercel에 커스텀 도메인 추가
+3. ✅ Cloudflare DNS A 레코드 설정 (216.198.79.1)
+4. ✅ 코드의 모든 URL을 새 도메인으로 변경
+
+**학습 포인트:**
+- DNS 설정 (A 레코드, CNAME)
+- SSL 인증 자동화
+- 도메인 전파 시간 고려
+
+#### C. 검색엔진 등록
+
+**사용자:** "인증된 소유자라고 하네"
+
+**AI의 작업:**
+1. ✅ Google Search Console 인증 완료 (DNS TXT 레코드)
+2. ✅ 네이버 서치어드바이저 인증 (HTML 메타 태그)
+3. ✅ 사이트맵 제출 (구글/네이버)
+
+**학습 포인트:**
+- 구글: 도메인 방식 (TXT 레코드)
+- 네이버: HTML 태그 방식
+- 사이트맵 제출 URL 형식
+
+#### D. 파비콘 및 OG 이미지
+
+**사용자:** "둘다 넣었어"
+
+**AI의 확인:**
+- `app/icon.png` ✅ (자동 파비콘)
+- `public/images/og/og-image.png` ✅ (새 OG 이미지)
+- layout.tsx 경로 업데이트
+
+**학습 포인트:**
+- Next.js 자동 파비콘 처리
+- OG 이미지 최적 크기 (1200x630)
+
+#### E. 버전 관리 및 문서 정리
+
+**대화 핵심:**
+
+**사용자:** "우리 웹서비스 버전관리를 해야하는데 깃허브로 가능할까?"
+
+**AI:** Git 태그와 WORK-LOG.md 활용 방안 제안
+
+**사용자:** "깃허브 이슈는 뭐야?"
+
+**AI:** GitHub Issues vs 문서 관리 비교
+- Issues: 팀 협업용
+- 문서: 1인 개발용
+- 결론: 현재는 문서만 사용
+
+**사용자:** "프로젝트플랜과 log 문서는 깃허브 이슈와 같이쓰면 조금이라도 장점이 잇는지 알려줘"
+
+**AI의 솔직한 답변:**
+- ❌ 중복이고 비효율적
+- 1인 개발에는 문서가 더 효율적
+- 팀 협업 시작하면 Issues 추가 고려
+
+**최종 결정:**
+- ✅ CLAUDE.md (AI 지시서)
+- ✅ PROJECT-PLAN.md (Phase별 계획)
+- ✅ WORK-LOG.md (작업 이력 + 버전 기록)
+- ✅ 디자인/SEO 가이드 문서
+- ❌ GitHub Issues (현재는 불필요)
+
+**버전 관리 시작:**
+1. ✅ Git 태그 v1.0.0 생성
+2. ✅ WORK-LOG.md에 버전 정보 추가
+3. ✅ Footer 컴포넌트로 웹사이트에 버전 표시
+
+### 8.3 세션 4에서 배운 핵심
+
+#### 1. SEO는 초기부터 중요
 ```typescript
-// 검색 엔진 최적화 (SEO) 자동
-export async function generateMetadata({ params }) {
-  const { type } = await params;
-  return {
-    title: `Seoul ${type} - Oh my Seoul`,
-    description: '...',
-    openGraph: {
-      images: [`/og/${type}.png`]
-    }
-  }
+// layout.tsx
+export const metadata: Metadata = {
+  openGraph: { ... },
+  twitter: { ... },
+  verification: { ... }
 }
 ```
 
-**바이럴 마케팅에 필수:**
-- Instagram, Facebook 링크 공유 시 미리보기 이미지 표시
-- 동적 OG 이미지 (타입별로 다른 이미지)
+#### 2. 도메인 방식 인증의 장점
+- 서브도메인 자동 포함
+- http/https 구분 없음
+- 장기적으로 더 편리
 
-**2. App Router (Next.js 13+)**
+#### 3. 문서 관리의 명확한 역할
+- **CLAUDE.md**: AI에게 작업 방식 알려주기
+- **PROJECT-PLAN.md**: 전체 계획
+- **WORK-LOG.md**: 시간순 이력 + 버전 기록
+
+#### 4. 버전 관리 = Git 태그 + 문서 + UI
 ```
-app/
-├── page.tsx                    # 랜딩
-├── quiz/page.tsx               # 퀴즈
-└── result/[type]/page.tsx      # 결과 (동적 라우팅)
-```
-
-**장점:**
-- 파일 시스템 기반 라우팅 (폴더 = URL)
-- Server/Client Component 명확한 분리
-- 메타데이터 관리 용이
-
-**3. Image Optimization**
-```typescript
-import Image from 'next/image';
-
-<Image
-  src="/images/types/trendsetter.webp"
-  width={800}
-  height={800}
-  alt="Seoul Trendsetter"
-  priority  // 첫 로드 우선
-/>
+Git: v1.0.0 태그
+문서: WORK-LOG.md에 버전 정보
+웹: Footer에 버전 표시
 ```
 
-**효과:**
-- 자동 WebP 변환
-- Lazy loading
-- 반응형 srcset 생성
+### 8.4 실전 팁
 
-**4. API Routes**
-```typescript
-// app/api/save-result/route.ts
-export async function POST(request: Request) {
-  const { answers, type } = await request.json();
-  // Supabase 저장
-  return Response.json({ success: true });
-}
+**SEO 작업 순서:**
+1. 메타데이터 설정
+2. 사이트맵/robots.txt 생성
+3. 도메인 연결
+4. 검색엔진 등록
+5. 사이트맵 제출
+6. 노출 대기 (구글 1주, 네이버 2주)
+
+**버전 관리 워크플로우:**
+1. 주요 마일스톤 완료
+2. Git 태그 생성 (`git tag -a v1.x.x`)
+3. WORK-LOG.md 업데이트
+4. Footer 버전 번호 수정
+5. 커밋 및 푸시
+
+**문서 vs Issues 선택 기준:**
+- 1인 개발: 문서만 ✅
+- 2-3명 팀: 문서 + Issues 고려
+- 4명 이상: Issues 필수
+
+### 8.5 타임라인
+
+```
+18:00 - SEO 작업 시작
+19:00 - 커스텀 도메인 연결 완료
+20:00 - 검색엔진 등록 완료
+21:00 - 파비콘/OG 이미지 추가
+22:00 - 버전 관리 시작 (v1.0.0)
+23:00 - Footer 추가 및 문서 정리 완료
 ```
 
-**Phase 6에서 활용:**
-- 클라이언트에서 `/api/save-result` 호출
-- 서버에서 데이터 저장 (보안 강화)
+**총 소요 시간:** 약 5시간
 
-**5. Vercel 최적화**
-- Next.js 개발사 Vercel의 무료 호스팅
-- 자동 배포 (git push → 배포 완료)
-- Edge Network (전 세계 빠른 로딩)
+### 8.6 결과물
 
-### 7.2 Tailwind CSS 선택 이유
+**배포 정보:**
+- Production: https://ohmyseoul.page
+- Git Tag: v1.0.0
+- SEO: 구글/네이버 등록 완료
+- 파비콘 및 OG 이미지 최적화
 
-**1. Utility-First 방식**
-```typescript
-// ✅ Tailwind
-<button className="bg-[#37BEB0] text-white px-4 py-2 rounded-lg hover:bg-[#2C9B8F]">
-  시작하기
-</button>
-
-// ❌ CSS 파일 별도 작성
-<button className="start-button">시작하기</button>
-// styles.css: .start-button { background: #37BEB0; ... }
+**파일 변경:**
 ```
-
-**장점:**
-- CSS 파일 왔다갔다 안 해도 됨
-- 클래스명 고민 불필요 (`.start-button` vs `.btn-start` vs `.cta-button`)
-- 중복 스타일 자동 제거 (빌드 시)
-
-**2. 반응형 디자인 간편**
-```typescript
-<div className="
-  w-full           /* 모바일: 100% */
-  md:w-1/2         /* 태블릿: 50% */
-  lg:w-1/3         /* 데스크탑: 33% */
-">
+app/layout.tsx           (메타데이터 추가)
+app/result/[type]/page.tsx  (동적 메타데이터)
+app/sitemap.ts           (신규)
+app/robots.ts            (신규)
+app/icon.png             (신규)
+components/Footer.tsx    (신규)
+public/images/og/        (신규)
+WORK-LOG.md              (버전 정보 추가)
 ```
-
-**바이럴 앱에 필수:**
-- 모바일 퍼스트 (Instagram 공유는 주로 모바일)
-- 다양한 화면 크기 대응
-
-**3. shadcn/ui와 완벽한 호환**
-```bash
-npx shadcn@latest add button
-```
-
-**생성된 코드:**
-```typescript
-// components/ui/button.tsx
-<Slot
-  className={cn(
-    "inline-flex items-center justify-center rounded-md text-sm",
-    "bg-primary text-primary-foreground hover:bg-primary/90",
-    className
-  )}
-/>
-```
-
-**장점:**
-- Tailwind 기반 컴포넌트 라이브러리
-- 코드를 직접 프로젝트에 복사 (의존성 최소화)
-- 커스터마이징 자유도 100%
-
-**4. 디자인 시스템 적용 용이**
-```css
-/* globals.css */
-:root {
-  --mint-primary: #37BEB0;
-}
-
-/* 자동으로 bg-[var(--mint-primary)] 사용 가능 */
-```
-
-**5. 빌드 최적화**
-- 사용하지 않는 CSS 자동 제거
-- 프로덕션 번들 크기 최소화
-
-**Tailwind v4 추가 장점:**
-- JavaScript 설정 파일 불필요 (`tailwind.config.js` 삭제)
-- CSS 네이티브 변수 활용
-- 빌드 속도 10배 향상
-
-### 7.3 Next.js + Tailwind 조합의 시너지
-
-**개발 속도 3배 향상:**
-```typescript
-// 10분 만에 완성되는 랜딩 페이지
-export default function LandingPage() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#E8F7F5] to-white">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center"
-      >
-        <h1 className="text-6xl font-bold text-[#37BEB0]">Oh my Seoul</h1>
-        <p className="mt-4 text-xl text-gray-600">당신의 서울 여행 스타일은?</p>
-        <Button className="mt-8 bg-[#37BEB0] hover:bg-[#2C9B8F]">
-          테스트 시작하기
-        </Button>
-      </motion.div>
-    </main>
-  );
-}
-```
-
-**배포 1분 완성:**
-```bash
-git push origin main
-# Vercel이 자동으로 빌드 + 배포
-# https://oh-my-seoul.vercel.app 완성
-```
-
-**초보자에게 적합:**
-- 학습 곡선 완만 (HTML/CSS 알면 시작 가능)
-- AI가 Tailwind 클래스명 잘 알고 있음
-- 커뮤니티 활발 (Stack Overflow, Discord)
 
 ---
 
-## 8. 개발 도구 활용: Chrome DevTools MCP
+## 9. 개발 도구 활용: Chrome DevTools MCP
 
-### 8.1 MCP(Model Context Protocol)란?
+### 9.1 MCP(Model Context Protocol)란?
 
 **MCP**: AI가 외부 도구와 소통하는 표준 프로토콜
 - Anthropic이 개발한 오픈 소스 프로토콜
@@ -1209,7 +1408,7 @@ AI (MCP 사용): [Chrome DevTools 연결]
                 → "ProgressBar 컴포넌트가 렌더링 안 되고 있습니다"
 ```
 
-### 8.2 Chrome DevTools MCP 설정
+### 9.2 Chrome DevTools MCP 설정
 
 **설치:**
 ```bash
@@ -1232,7 +1431,7 @@ npm run build
 }
 ```
 
-### 8.3 실제 활용 사례 (Oh my Seoul 프로젝트)
+### 9.3 실제 활용 사례 (Oh my Seoul 프로젝트)
 
 **시나리오 1: 화면이 안 나올 때**
 
@@ -1284,7 +1483,7 @@ AI (MCP): [Network 탭 분석]
            - 총 7개 이미지 최적화 시 5MB → 1.5MB 예상"
 ```
 
-### 8.4 MCP의 장단점
+### 9.4 MCP의 장단점
 
 **✅ 장점:**
 - **실시간 디버깅**: 화면 캡처 → 분석 자동화
@@ -1296,7 +1495,7 @@ AI (MCP): [Network 탭 분석]
 - 브라우저 권한 필요
 - 아직 실험 단계 (2024년 말 기준)
 
-### 8.5 Oh my Seoul 프로젝트에서 MCP 없이 해결한 방법
+### 9.5 Oh my Seoul 프로젝트에서 MCP 없이 해결한 방법
 
 **우리가 사용한 방법:**
 1. **콘솔 로그 적극 활용**
@@ -1321,9 +1520,9 @@ Error: Route '/result/[type]' used `params.type`.
 
 ---
 
-## 9. 배운 점과 교훈
+## 10. 배운 점과 교훈
 
-### 9.1 AI 바이브 코딩 Best Practices
+### 10.1 AI 바이브 코딩 Best Practices
 
 **1. 명확한 요구사항 전달**
 ```
@@ -1355,7 +1554,7 @@ AI 작성 코드 → 로컬 테스트 → 버그 발견 → 수정
 (테스트 없이는 숨겨진 버그 발견 불가)
 ```
 
-### 9.2 프로젝트 관리 교훈
+### 10.2 프로젝트 관리 교훈
 
 **1. 문서 최소화 원칙 (Single Source of Truth)**
 ```
@@ -1386,7 +1585,7 @@ ae414b3 - docs: 프로젝트 초기 설정 완료 #phase0
 9e1f89f - chore: 소문자 폴더로 이관
 ```
 
-### 9.3 기술 결정 교훈
+### 10.3 기술 결정 교훈
 
 **1. 최신 기술 채택의 위험**
 - Next.js 15 (2024년 출시) → async params 에러
@@ -1414,7 +1613,7 @@ Phase 0 (AI 일러스트) 대기 → ❌ 막힘
 더미 데이터로 진행 → ✅ 빠른 개발
 ```
 
-### 9.4 디버깅 전략
+### 10.4 디버깅 전략
 
 **1. 서버 로그 먼저 확인**
 ```bash
@@ -1444,7 +1643,7 @@ try {
 - Console 탭: 에러 메시지
 - Network 탭: API 요청 확인
 
-### 9.5 AI와 협업 시 시행착오
+### 10.5 AI와 협업 시 시행착오
 
 **실수 1: 과도한 문서 생성**
 ```
@@ -1480,9 +1679,9 @@ AI: scores: { trendy: 3 }  (잘못된 키)
 
 ---
 
-## 10. 다음 단계
+## 11. 다음 단계
 
-### 10.1 Oh my Seoul 프로젝트 완성하기
+### 11.1 Oh my Seoul 프로젝트 완성하기
 
 **현재 상태 (2025-10-21 종료 시점):**
 - ✅ Phase 0.1 완료 (데이터 구조)
@@ -1533,7 +1732,7 @@ Midjourney 프롬프트:
 7개 타입 × 2-3개 생성 → 최적 선택
 ```
 
-### 10.2 AI 바이브 코딩 실력 향상
+### 11.2 AI 바이브 코딩 실력 향상
 
 **1. 작은 프로젝트부터 시작**
 - Todo 앱 (Next.js + Tailwind)
@@ -1572,7 +1771,7 @@ git commit -m "update"
 - Discord (Next.js, Tailwind 커뮤니티)
 - GitHub (오픈소스 코드 읽기)
 
-### 10.3 추천 학습 자료
+### 11.3 추천 학습 자료
 
 **Next.js**
 - 공식 문서: https://nextjs.org/docs
@@ -1593,7 +1792,7 @@ git commit -m "update"
 - TypeScript Handbook: https://www.typescriptlang.org/docs
 - Total TypeScript (Matt Pocock)
 
-### 10.4 실전 프로젝트 아이디어
+### 11.4 실전 프로젝트 아이디어
 
 **1. 포트폴리오 사이트**
 - Next.js 15 + Tailwind

@@ -37,6 +37,31 @@
 
 ---
 
+## 2025-10-23 (심야)
+
+### 파비콘, 버전 관리, Footer 추가
+- ✅ **파비콘 및 OG 이미지 추가**
+  - app/icon.png: 새 파비콘 추가 (1.9KB)
+  - public/images/og/og-image.png: 새 OG 이미지 (1200x630)
+  - layout.tsx: OG 이미지 경로 업데이트
+  - SNS 공유 및 검색엔진 미리보기 개선
+- ✅ **버전 관리 시작**
+  - Git 태그 v1.0.0 생성 및 푸시
+  - WORK-LOG.md에 버전 정보 추가
+  - MVP 출시 마일스톤 기록
+  - 버전 관리 위치: WORK-LOG.md (시간순 기록)
+- ✅ **Footer 컴포넌트 추가**
+  - components/Footer.tsx: 버전 및 저작권 정보 표시
+  - layout.tsx: Footer 추가 및 Flexbox 레이아웃 적용
+  - 모든 페이지 하단에 "Oh my Seoul v1.0.0 · © 2025" 표시
+
+**문서 정리:**
+- GitHub Issues vs 문서 관리 논의 → 현재 구조 유지 결정
+- CLAUDE.md (AI 지시서), PROJECT-PLAN.md (계획), WORK-LOG.md (이력) 역할 명확화
+- 1인 개발 환경에서는 문서만 사용, 팀 협업 시 Issues 추가 고려
+
+---
+
 ## 2025-10-23 (저녁)
 
 ### SEO 최적화 및 검색엔진 등록 완료 🎉

@@ -23,18 +23,14 @@ export function TravelerTypeBadge({ travelerType }: TravelerTypeBadgeProps) {
         <CardHeader className="text-center space-y-4">
           {/* Illustration */}
           <div className="flex justify-center">
-            <div
-              className="w-48 h-48 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${travelerType.color}20` }}
-            >
-              {/* Placeholder for AI illustration */}
-              <div className="text-6xl">{travelerType.id === 'trendsetter' ? '🌟' :
-                travelerType.id === 'heritage-explorer' ? '🏛️' :
-                travelerType.id === 'foodie' ? '🍜' :
-                travelerType.id === 'kculture-fan' ? '💜' :
-                travelerType.id === 'nature-seeker' ? '🌿' :
-                travelerType.id === 'social-butterfly' ? '🦋' :
-                '⚖️'}</div>
+            <div className="relative w-64 h-64">
+              <Image
+                src={travelerType.image}
+                alt={travelerType.name.ko}
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </div>
 

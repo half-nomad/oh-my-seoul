@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 
@@ -25,13 +26,11 @@ export default function TermsPage() {
     // Lists with dash
     .replace(/^\- (.*$)/gim, '<li class="ml-4">$1</li>')
     // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#37BEB0] underline hover:text-[#2C9B8F]">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#37BEB0] underline hover:text-[#2C9B8F]" target="_blank" rel="noopener noreferrer">$1</a>')
     // Horizontal rules
     .replace(/^---$/gim, '<hr class="my-8 border-gray-300" />')
     // Paragraphs
-    .replace(/^(?!<[h|l|p|d|t|c|u])(.*$)/gim, '<p class="mb-4 leading-relaxed">$1</p>')
-    // Wrap lists
-    .replace(/(<li.*<\/li>)/s, '<ol class="list-decimal ml-6 mb-4 space-y-2">$1</ol>');
+    .replace(/^(?!<[h|l|p|d|t|c|u])(.*$)/gim, '<p class="mb-4 leading-relaxed">$1</p>');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E8F7F5] to-white py-12 px-4">
@@ -43,12 +42,12 @@ export default function TermsPage() {
 
         {/* Back to Home Button */}
         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 bg-[#37BEB0] text-white px-6 py-3 rounded-lg hover:bg-[#2C9B8F] transition-colors"
           >
             ← 홈으로 돌아가기
-          </a>
+          </Link>
         </div>
       </div>
     </div>

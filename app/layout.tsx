@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   keywords: ['서울', '여행', '퀴즈', '여행 스타일', 'Seoul', 'travel quiz', '서울 여행', '여행자 타입'],
   authors: [{ name: 'Oh my Seoul' }],
 
+  // 검색엔진 인증
+  verification: {
+    other: {
+      'naver-site-verification': 'd4ca2a9cefd7e7f2a80a649427edec268527104b',
+    },
+  },
+
   // Open Graph (SNS 공유용)
   openGraph: {
     title: 'Oh my Seoul - 나만의 서울 여행 스타일 찾기',

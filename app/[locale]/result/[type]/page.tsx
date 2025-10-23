@@ -10,7 +10,7 @@ import { getTravelerTypeById } from '@/data/types';
 import { courses } from '@/data/courses';
 import { TravelerTypeBadge } from '@/components/result/TravelerTypeBadge';
 import { CourseCard } from '@/components/result/CourseCard';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/ui/button';
 import { RotateCcw, Share2 } from 'lucide-react';
 
 interface ResultPageProps {

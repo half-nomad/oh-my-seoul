@@ -6,7 +6,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/ui/button';
 import { MapPin, Sparkles } from 'lucide-react';
 
 export default function LandingPage() {

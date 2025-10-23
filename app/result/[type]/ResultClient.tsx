@@ -7,7 +7,7 @@ import type { TravelerType } from '@/data/types';
 import type { Course } from '@/data/courses';
 import { TravelerTypeBadge } from '@/components/result/TravelerTypeBadge';
 import { CourseCard } from '@/components/result/CourseCard';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/ui/button';
 import { RotateCcw, Share2 } from 'lucide-react';
 
 interface ResultClientProps {

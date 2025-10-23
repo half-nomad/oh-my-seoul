@@ -5,7 +5,7 @@ import * as React from 'react';
 import { getTravelerTypeById } from '@/data/types';
 import { courses } from '@/data/courses';
 import { ResultClient } from './ResultClient';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/ui/button';
 
 interface ResultPageProps {
   params: Promise<{

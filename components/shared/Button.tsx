@@ -2,10 +2,10 @@
 // Wrapper around shadcn Button with project-specific styling
 
 import * as React from 'react';
-import { Button as ShadcnButton, ButtonProps } from '@/components/ui/button';
+import { Button as ShadcnButton } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-interface CustomButtonProps extends ButtonProps {
+interface CustomButtonProps extends React.ComponentProps<typeof ShadcnButton> {
   children: React.ReactNode;
 }
 

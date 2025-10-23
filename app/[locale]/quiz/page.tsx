@@ -11,7 +11,7 @@ import { ProgressBar } from '@/components/quiz/ProgressBar';
 import { QuestionCard } from '@/components/quiz/QuestionCard';
 import { OptionButton } from '@/components/quiz/OptionButton';
 import { Loading } from '@/components/shared/Loading';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { questions } from '@/data/questions';
 

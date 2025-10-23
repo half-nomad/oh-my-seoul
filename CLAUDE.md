@@ -4,12 +4,13 @@
 
 ---
 
-## 📁 프로젝트 문서 (3개만 유지)
+## 📁 프로젝트 문서
 
 ```
 OhmySeoul/
 ├── CLAUDE.md                    # 이 파일 - 문서 가이드
 ├── PROJECT-PLAN.md              # 개발 실행 계획 (Phase 0~7)
+├── WORK-LOG.md                  # 작업 이력 기록
 └── oh-my-seoul-design-system.md # 디자인 토큰
 ```
 
@@ -20,11 +21,17 @@ OhmySeoul/
 ### **CLAUDE.md** (이 파일)
 - 어떤 문서를 언제 봐야 하는지 안내
 - 프로젝트 핵심 정보 (비즈니스 목적, MVP 범위)
+- 현재 진행 상태 요약
 
 ### **PROJECT-PLAN.md**
 - Phase 0~7 작업 계획
 - 기술 스택, 폴더 구조
 - 각 Phase별 체크리스트
+
+### **WORK-LOG.md**
+- 시간순 작업 이력 기록
+- 완료된 작업의 상세 내용
+- 버그 수정 및 이슈 해결 기록
 
 ### **oh-my-seoul-design-system.md**
 - 색상, 폰트, 간격 등 디자인 토큰
@@ -55,34 +62,35 @@ OhmySeoul/
 2. **PROJECT-PLAN.md** → 해당 Phase 작업 확인
 3. **디자인 필요 시** → oh-my-seoul-design-system.md
 
+### 작업 완료 시
+1. **WORK-LOG.md** 업데이트 → 완료한 작업 상세 기록
+2. **PROJECT-PLAN.md** 체크리스트 업데이트
+3. **CLAUDE.md** 현재 상태 업데이트
+
 ### 문서 생성 금지
-- ❌ 추가 문서 만들지 말 것
-- ❌ README, WORK-LOG 등 불필요
+- ❌ 추가 문서 만들지 말 것 (위 4개 문서만 유지)
+- ❌ README, 기타 중복 문서 불필요
 
 ---
 
----
+## 📊 현재 진행 상태
 
-## 📝 작업 로그
+**최종 업데이트**: 2025-10-23
 
-### 2025-10-23 (오후)
-- ✅ Button 컴포넌트 import 이슈 수정 (shared/Button → ui/button)
-- ✅ ButtonProps 타입 문제 해결 (React.ComponentProps 사용)
-- ✅ Vercel 프로덕션 배포 완료
-- ✅ 배포 URL: https://oh-my-seoul-qr97pjg5m-mokkas-projects-8367cd87.vercel.app
-- ✅ GitHub 저장소 자동 배포 연동 완료
+**완료된 Phase**:
+- ✅ Phase 0: 사전 준비 (콘텐츠, AI 일러스트)
+- ✅ Phase 1: 프로젝트 기반 (Next.js, 디자인 시스템)
+- ✅ Phase 2: UI 컴포넌트 (shadcn/ui, 공통 컴포넌트)
+- ✅ Phase 3: 퀴즈 플로우 (전체 플로우 구현 완료)
+- ✅ Phase 7: Vercel 배포 (프로덕션 환경)
 
-### 2025-10-23 (오전)
-- ✅ AI 일러스트 7개 추가 (PNG, 800KB, public/images/types/)
-- ✅ TravelerTypeBadge 컴포넌트 이미지 표시 수정 (이모지 → 실제 이미지)
-- ✅ GitHub 저장소 생성 및 연결 (https://github.com/half-nomad/oh-my-seoul)
-- ✅ 첫 커밋 및 푸시 완료
+**다음 작업**:
+- Phase 4: 바이럴 기능 (게이미피케이션, Instagram 공유, OG 이미지)
+- Phase 5: 다국어 & 최적화 (next-intl, 성능)
+- Phase 7: 전체 플로우 테스트, 커스텀 도메인 (선택)
 
-### 2025-10-21
-- ✅ PRD 및 비즈니스 플랜 검토
-- ✅ PROJECT-PLAN.md 전면 업데이트 (MVP 2.0)
-- ✅ CLAUDE.md 작성
-- ✅ 불필요한 문서 삭제
-- ✅ Phase 0~3 개발 완료 (퀴즈 플로우)
+**배포 정보**:
+- Production: https://oh-my-seoul-qr97pjg5m-mokkas-projects-8367cd87.vercel.app
+- GitHub: https://github.com/half-nomad/oh-my-seoul
 
-**현재 단계**: Phase 3 완료, Phase 7 배포 완료 → Phase 4 준비 (바이럴 기능)
+**상세 작업 이력**: WORK-LOG.md 참고

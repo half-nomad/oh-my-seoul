@@ -65,12 +65,17 @@ OhmySeoul/
 
 ## 📝 작업 로그
 
+### 2025-10-23
+- ✅ AI 일러스트 7개 추가 (PNG, 800KB, public/images/types/)
+- ✅ TravelerTypeBadge 컴포넌트 이미지 표시 수정 (이모지 → 실제 이미지)
+- ✅ GitHub 저장소 생성 및 연결 (https://github.com/half-nomad/oh-my-seoul)
+- ✅ 첫 커밋 및 푸시 완료
+
 ### 2025-10-21
 - ✅ PRD 및 비즈니스 플랜 검토
 - ✅ PROJECT-PLAN.md 전면 업데이트 (MVP 2.0)
 - ✅ CLAUDE.md 작성
 - ✅ 불필요한 문서 삭제
+- ✅ Phase 0~3 개발 완료 (퀴즈 플로우)
 
-**현재 단계**: Phase 0 (AI 일러스트, 영어 번역, 추천 코스 대기)
-
-> 상세 로그는 LOG.md 참조
+**현재 단계**: Phase 3 완료 → Phase 4 준비 (바이럴 기능)

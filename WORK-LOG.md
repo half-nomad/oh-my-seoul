@@ -4,6 +4,46 @@
 
 ---
 
+## 2025-10-23 (저녁)
+
+### SEO 최적화 및 검색엔진 등록 완료 🎉
+- ✅ **SEO 메타데이터 설정**
+  - layout.tsx: Open Graph, Twitter 카드 추가
+  - result/[type]/page.tsx: 타입별 동적 메타데이터 생성
+  - keywords, authors 등 기본 메타데이터 추가
+- ✅ **사이트맵 및 robots.txt 생성**
+  - app/sitemap.ts: 9개 페이지 자동 생성 (메인, 퀴즈, 7개 결과 페이지)
+  - app/robots.ts: 검색엔진 크롤링 허용 설정
+  - 사이트맵 URL: https://ohmyseoul.page/sitemap.xml
+- ✅ **커스텀 도메인 연결**
+  - Cloudflare에서 ohmyseoul.page 도메인 구매
+  - Vercel에 커스텀 도메인 연결 완료
+  - Cloudflare DNS 설정 (A 레코드: 216.198.79.1)
+  - SSL 인증 완료
+  - 코드의 모든 Vercel URL을 ohmyseoul.page로 변경
+- ✅ **Google Search Console 등록**
+  - 도메인 방식으로 소유권 인증 (Cloudflare TXT 레코드)
+  - 사이트맵 제출 완료: https://ohmyseoul.page/sitemap.xml
+  - 9개 페이지 검색엔진 등록 완료
+- ✅ **네이버 서치어드바이저 등록**
+  - HTML 태그 방식으로 소유권 인증
+  - layout.tsx에 naver-site-verification 메타 태그 추가
+  - 사이트맵 제출 완료 (처리 중)
+- ✅ **버그 수정**
+  - TypeScript 타입 에러 수정: travelerType.englishName → travelerType.name.en
+  - 빌드 오류 해결 및 재배포 완료
+
+**배포 정보:**
+- Production URL: https://ohmyseoul.page
+- GitHub: https://github.com/half-nomad/oh-my-seoul
+- 모든 커밋 푸시 완료
+
+**검색 노출 예상:**
+- 구글: 1일~1주
+- 네이버: 3일~2주
+
+---
+
 ## 2025-10-23 (오후)
 
 ### Vercel 배포 완료

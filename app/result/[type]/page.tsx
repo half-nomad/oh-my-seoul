@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ResultPageProps): Promise<Met
   return {
     title: `${travelerType.koreanName} - Oh my Seoul`,
     description: travelerType.description.ko,
-    keywords: ['서울 여행', '여행 스타일', travelerType.koreanName, travelerType.englishName],
+    keywords: ['서울 여행', '여행 스타일', travelerType.koreanName, travelerType.name.en],
 
     openGraph: {
       title: `${travelerType.koreanName} - Oh my Seoul`,
